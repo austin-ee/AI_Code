@@ -34,6 +34,20 @@ class Graph:
         except Exception as e:
            print(e)
 
+    def dfs(self,root):
+        visited=[]
+        fringe=collections.deque([root])
+        while fringe:
+            node=fringe.pop()
+            print(node)
+            if node not in visited:
+                visited.append(node)
+            
+            for child in self.adjacency_list[node]:
+                if child not in visited:
+                    fringe.append(child)
+        print(visited)
+
 
 adlist={
     'A':['B','C'],
@@ -46,5 +60,7 @@ adlist={
     }
 g=Graph(adjlist=adlist)
 g.add_edge('T','Z')
+print(g.dfs('A'))
+print('bfs')
 print(g.bfs('A'))
 print(g.adjacency_list)
